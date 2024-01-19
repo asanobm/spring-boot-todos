@@ -2,14 +2,12 @@ package com.fleeklounge.example.todos.controllers;
 
 import com.fleeklounge.example.todos.entities.Todo;
 import com.fleeklounge.example.todos.services.TodoService;
+import jakarta.websocket.server.PathParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fleeklounge.example.todos.models.CreateTodoModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,11 @@ public class TodoController {
     @GetMapping("/")
     public ResponseEntity<List<Todo>> index() {
         return ok(this.todoService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Todo> getTodoById(@PathVariable String id) {
+        return ok(this.todoService.findById(id));
     }
 
     @PostMapping("/")
