@@ -3,6 +3,7 @@ package com.fleeklounge.example.todos.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fleeklounge.example.todos.entities.Todo;
 import com.fleeklounge.example.todos.models.CreateTodoModel;
+import com.fleeklounge.example.todos.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,12 @@ import java.util.List;
 public class TodoServiceImpl implements TodoService {
 
     final ObjectMapper mapper = new ObjectMapper();
+    final TodoRepository todoRepository;
+
+    public TodoServiceImpl(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
     @Override
     public List<Todo> findAll() {
         return null;
@@ -23,6 +30,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo create(CreateTodoModel todo) {
-        return mapper.convertValue(todo, Todo.class);
+        Todo entity = this.todoRepository.save(mapper.convertValue(todo, Todo.class));
+        return entity;
     }
 }
