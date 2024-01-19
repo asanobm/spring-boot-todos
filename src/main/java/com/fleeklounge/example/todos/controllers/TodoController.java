@@ -1,5 +1,7 @@
 package com.fleeklounge.example.todos.controllers;
 
+import com.fleeklounge.example.todos.entities.Todo;
+import com.fleeklounge.example.todos.services.TodoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fleeklounge.example.todos.models.CreateTodoModel;
@@ -17,16 +19,23 @@ public class TodoController {
     // set logback
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 
+    // service injection
+    private final TodoService todoService;
+
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
+
     @GetMapping("/")
     public ResponseEntity<String> index() {
         return ok("Hello, world!");
     }
 
     @PostMapping("/")
-    public ResponseEntity<CreateTodoModel> create(@RequestBody()CreateTodoModel model) {
+    public ResponseEntity<Todo> create(@RequestBody()CreateTodoModel model) {
         logger.info("title: " + model.getTitle());
         logger.info("description: " + model.getDescription());
         logger.info("done: " + model.isDone());
-        return ok(model);
+        return ok(this.todoService.create(model));
     }
 }
