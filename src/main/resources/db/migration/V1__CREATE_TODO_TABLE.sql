@@ -1,6 +1,6 @@
-drop table if exists Todos;
+drop table if exists todos;
 
-create table Todos (
+create table todos (
     id varchar(35) not null,
     title varchar(255) not null,
     description varchar(255) not null,

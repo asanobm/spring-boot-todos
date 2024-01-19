@@ -1,4 +1,4 @@
-package entities;
+package com.fleeklounge.example.todos.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity()
-@Table(name = "Todos")
+@Table(name = "todos")
 public class Todo {
     @Id
     private String id;
