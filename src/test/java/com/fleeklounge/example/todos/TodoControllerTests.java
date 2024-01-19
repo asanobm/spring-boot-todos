@@ -21,4 +21,13 @@ public class TodoControllerTests {
         String response = restTemplate.getForObject(url, String.class);
         assert response.equals("Hello, world!");
     }
+
+    @Test
+    public void testCreate() {
+        String url = "http://localhost:" + port + "/";
+        // Test Data JSON {"title":"Test Title","description":"Test Description","done":true}
+        String json = "{\"title\":\"Test Title\",\"description\":\"Test Description\",\"done\":true}";
+        String response = restTemplate.postForObject(url, json, String.class);
+        assert response.equals("Hello, world!");
+    }
 }
