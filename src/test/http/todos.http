@@ -1,4 +1,4 @@
-# Create Todo Item
+### Create Todo Item
 POST /
 Host: localhost:8080
 Content-Type: application/json
@@ -9,3 +9,9 @@ Cache-Control: no-cache
   "description": "description",
   "done": false
 }
+
+### Get Todo Item
+GET /
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache

@@ -20,7 +20,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<Todo> findAll() {
-        return null;
+        return this.todoRepository.findAll();
     }
 
     @Override
